@@ -6,22 +6,11 @@ import './App.scss';
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Landing</Link>
-            </li>
-            <li>
-              <Link to="/details">Details</Link>
-            </li>
-          </ul>
-        </nav>
-
+      <div className="pt-5">
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/details">
+          <Route path="/details/:jobId">
             <Details />
           </Route>
           <Route path="/">

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import Config from './Config';
+import Config from 'api/Config';
 
 export default class APIService {
   static parseTpl(template, map, fallback) {
-    return template.replace(/\$\{.+?}/g, (match) => {
+    return template.replace(/#\{.+?}/g, (match) => {
       const path = match.substr(2, match.length - 3).trim();
       return this.getTpl(path, map, fallback);
     });
@@ -40,7 +40,9 @@ export default class APIService {
    *
    * @memberof APIService
    */
-  static request({ baseUrl, url, method = 'get', data, queryParams, config }) {
+  static request({
+ baseUrl, url, method = 'get', data, queryParams, config 
+}) {
     const templatedUrl = this.parseTpl(url, { ...queryParams });
     return new Promise(async (resolve, reject) => {
       try {
@@ -83,7 +85,6 @@ export default class APIService {
     }
   ) {
     const qp = { ...queryParams };
-
     return axios({
       url: baseUrl + url,
       method,

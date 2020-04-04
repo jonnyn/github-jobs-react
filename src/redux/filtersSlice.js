@@ -5,24 +5,25 @@ const filtersSlice = createSlice({
     initialState: {
         description: null,
         location: null,
-        fullTime: false
+        fullTime: false,
+        page: 0
     },
     reducers: {
         setDescription(state, action) {
-            const { description } = action.payload;
-            state.description = description;
+            state.description = action.payload;
         },
         setLocation(state, action) {
-            const { location } = action.payload;
-            state.location = location
+            state.location = action.payload
         },
         setFullTime(state, action) {
-            const { fullTime } = action.payload;
-            state.fullTime = fullTime;
+            state.fullTime = action.payload;
+        },
+        setPage(state, action) {
+            state.page = action.payload;
         }
     }
 });
 
-export const { setDescription, setLocation, setFullTime } = filtersSlice.actions;
+export const { setDescription, setLocation, setFullTime, setPage } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

@@ -1,38 +1,98 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Table, Pagination } from 'react-bootstrap';
 
-export default class PaginatedTable extends Component {
+class PaginatedTable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            jobList: []
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (JSON.stringify(props.jobs) !== JSON.stringify(state.jobList)) {
+            return {
+                ...state,
+                jobList: [...props.jobs]
+            }
+        }
+
+        return null;
+    }
+
+    navigateJobDetail = jobId => {
+
+    }
+
+    firstPage = () => {
+        console.log('First Page');
+    }
+
+    prevPage = () => {
+        console.log('Previous Page');
+    }
+
+    nextPage = () => {
+        console.log('Next Page');
+    }
+
     render() {
+        console.log(this.state.jobList);
         return (
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </Table>
+            <Container>
+                <Row>
+                    <Col>
+                        <Table striped bordered hover variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Role</th>
+                                    <th>Location</th>
+                                    <th>Type</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.jobList.map((job, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td><Link to={`/details/${job.id}`}>{job.company}</Link></td>
+                                            <td>{job.title}</td>
+                                            <td>{job.location}</td>
+                                            <td>{job.type}</td>
+                                            <td>{job.created_at}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+                <Row>
+                    <div>
+                        <Pagination size="sm">
+                            <Pagination.First onClick={this.firstPage}/>
+                            <Pagination.Prev onClick={this.prevPage}/>
+                            <Pagination.Item active>{this.state.currentPage}</Pagination.Item>
+                            <Pagination.Next onClick={this.nextPage}/>
+                        </Pagination>
+                        <br />
+                    </div>
+                </Row>
+            </Container>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    jobs: state.jobs.jobs
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatch
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaginatedTable);
