@@ -1,55 +1,67 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchJobs } from 'redux/jobsSlice';
-import { Col, Form, Button } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
+import { AppButton } from 'components';
 
 class FilteringPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            localKeyword: '',
-            localLocation: '',
-            localFullTime: false
+            loading: false,
+            fullTime: false
         };
     }
 
-    onChangeSearch = e => {
-        this.setState({localKeyword: e.target.value});
-    }
-
-    onChangeLocation = e => {
-        this.setState({localLocation: e.target.value});
+    componentDidMount() {
+        this.setState({ fullTime: this.props.fullTime })
     }
 
     onChangeFullTime = e => {
-        this.setState({localFullTime: e.target.value});
+        this.setState({fullTime: e.target.checked});
     }
 
-    handleOnSubmit = e => {
+    handleOnSubmit = async e => {
         e.preventDefault();
-        const { localKeyword, localLocation, localFullTime } = this.state;
-        this.props.dispatch(fetchJobs({description: localKeyword, location: localLocation, full_time: localFullTime, page: this.props.page}))
+        this.setState({loading: true});
+        const description =  e.target.elements.formGridSearch.value;
+        const location = e.target.elements.formGridLocation.value;
+        const fullTime = this.state.fullTime;
+        await this.props.dispatch(fetchJobs({description, location, fullTime, page: 1}));
+        this.setState({loading: false});
     }
 
     render() {
+        const { loading, fullTime } = this.state;
         return (
             <Form onSubmit={this.handleOnSubmit} role="form">
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridSearch">
-                        <Form.Control placeholder="Search" onChange={this.onChangeSearch}/>
+                        <Form.Control 
+                            placeholder="Search" 
+                            defaultValue={this.props.description}
+                        />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridLocation">
-                        <Form.Control placeholder="Location" onChange={this.onChangeLocation}/>
+                        <Form.Control 
+                            placeholder="Location" 
+                            defaultValue={this.props.location}
+                        />
                     </Form.Group>
                     <Form.Group as={Col}></Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridCheckbox">
-                        <Form.Check type="checkbox" label="Full Time Only" onChange={this.onChangeFullTime}/>
+                        <Form.Check 
+                            type="checkbox" 
+                            label="Full Time Only"
+                            onChange={this.onChangeFullTime}
+                            checked={fullTime ? "checked" : ""}
+                        />
                     </Form.Group>
                     <Form.Group as={Col}></Form.Group>
                     <Form.Group as={Col} controlId="formGridButton">
-                        <Button variant="primary" type="submit" block>Go</Button>
+                        <AppButton label='Go' isLoading={loading} />
                     </Form.Group>
                 </Form.Row>
             </Form>
@@ -60,8 +72,7 @@ class FilteringPanel extends Component {
 const mapStateToProps = state => ({
     description: state.filters.description,
     location: state.filters.location,
-    fullTime: state.filters.fullTime,
-    page: state.filters.page
+    fullTime: state.filters.fullTime
 });
 
 const mapDispatchToProps = dispatch => ({

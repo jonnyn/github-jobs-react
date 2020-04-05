@@ -1,6 +1,6 @@
 import JobAPI from 'api/JobAPI';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { setDescription, setLocation, setFullTime } from 'redux/filtersSlice';
+import { setDescription, setLocation, setFullTime, setPage } from 'redux/filtersSlice';
 
 // thunks
 export const fetchJobs = createAsyncThunk(
@@ -11,8 +11,8 @@ export const fetchJobs = createAsyncThunk(
             thunkAPI.dispatch(setDescription(description));
             thunkAPI.dispatch(setLocation(location));
             thunkAPI.dispatch(setFullTime(fullTime));
+            thunkAPI.dispatch(setPage(page));
             const response = await JobAPI.fetchJobs(description, location, fullTime, page);
-            console.log('fetchJobsStatus', response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -25,7 +25,6 @@ export const fetchJobById = createAsyncThunk(
     async (jobId, thunkAPI) => {
         try {
             const response = await JobAPI.fetchJobDetail(jobId);
-            console.log('fetchJobByIdStatus', response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -41,7 +40,6 @@ const jobsSlice = createSlice({
         jobs: []
     },
     reducers: {
-
     },
     extraReducers: {
         [fetchJobs.fulfilled]: (state, action) => {

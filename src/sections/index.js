@@ -1,8 +1,8 @@
-import Landing from './Landing';
 import Details from './Details';
 import FilteringPanel from './FilteringPanel';
+import Landing from './Landing';
 import PaginatedTable from './PaginatedTable';
 
 export {
-    Landing, Details, FilteringPanel, PaginatedTable
+    Details, FilteringPanel, Landing, PaginatedTable
 };

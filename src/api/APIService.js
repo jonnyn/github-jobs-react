@@ -40,9 +40,7 @@ export default class APIService {
    *
    * @memberof APIService
    */
-  static request({
- baseUrl, url, method = 'get', data, queryParams, config 
-}) {
+  static request({ baseUrl, url, method = 'get', data, queryParams, config }) {
     const templatedUrl = this.parseTpl(url, { ...queryParams });
     return new Promise(async (resolve, reject) => {
       try {
@@ -79,7 +77,7 @@ export default class APIService {
       method, 
       data, 
       queryParams, 
-      timeout = Config.config.timeout, 
+      timeout = Config.setting.timeout, 
       withCredentials = false, 
       headers = { Accept: 'application/json' } 
     }

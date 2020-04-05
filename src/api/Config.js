@@ -6,8 +6,9 @@ const endpoint = {
     jobDetail: 'positions/#{job_id}.json'
 };
 
-const config = {
-    timeout: 100000
+const setting = {
+    timeout: 100000,
+    perPage: 50
 }
 
-export default { baseUrl, proxyUrl, endpoint, config };
+export default { baseUrl, proxyUrl, endpoint, setting };

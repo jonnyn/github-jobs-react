@@ -10,7 +10,7 @@ class Details extends Component {
         super(props);
         this.state = {
             isLoading: true
-        }
+        };
     }
 
     async componentDidMount() {

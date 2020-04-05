@@ -6,7 +6,7 @@ const filtersSlice = createSlice({
         description: null,
         location: null,
         fullTime: false,
-        page: 0
+        page: 1
     },
     reducers: {
         setDescription(state, action) {
