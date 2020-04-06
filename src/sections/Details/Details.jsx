@@ -5,7 +5,7 @@ import { Container, Row, Col, Media } from 'react-bootstrap';
 import { fetchJobById } from 'redux/jobsSlice';
 import { AppSpinner } from 'components';
 
-class Details extends Component {
+export class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {

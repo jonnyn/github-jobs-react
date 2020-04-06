@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing filters actions should create an action to set description 1`] = `
+Array [
+  Object {
+    "payload": "search keyword",
+    "type": "filters/setDescription",
+  },
+]
+`;
+
+exports[`Testing filters actions should create an action to set full_time 1`] = `
+Array [
+  Object {
+    "payload": true,
+    "type": "filters/setFullTime",
+  },
+]
+`;
+
+exports[`Testing filters actions should create an action to set location 1`] = `
+Array [
+  Object {
+    "payload": "Vancouver",
+    "type": "filters/setLocation",
+  },
+]
+`;
+
+exports[`Testing filters actions should create an action to set page 1`] = `
+Array [
+  Object {
+    "payload": 2,
+    "type": "filters/setPage",
+  },
+]
+`;
+
+exports[`Testing filters reducers reduces correct states after setDescription action 1`] = `
+Object {
+  "description": "search keyword",
+  "fullTime": false,
+  "location": null,
+  "page": 1,
+}
+`;
+
+exports[`Testing filters reducers reduces correct states after setFullTime action 1`] = `
+Object {
+  "description": null,
+  "fullTime": true,
+  "location": null,
+  "page": 1,
+}
+`;
+
+exports[`Testing filters reducers reduces correct states after setLocation action 1`] = `
+Object {
+  "description": null,
+  "fullTime": false,
+  "location": "sf",
+  "page": 1,
+}
+`;
+
+exports[`Testing filters reducers reduces correct states after setPage action 1`] = `
+Object {
+  "description": null,
+  "fullTime": false,
+  "location": null,
+  "page": 3,
+}
+`;

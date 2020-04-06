@@ -6,7 +6,7 @@ import { fetchJobs } from 'redux/jobsSlice';
 import Config from 'api/Config';
 import { AppSpinner } from 'components';
 
-class PaginatedTable extends Component {
+export class PaginatedTable extends Component {
     constructor(props) {
         super(props);
         this.state = {

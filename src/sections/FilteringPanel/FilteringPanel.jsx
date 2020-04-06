@@ -4,7 +4,7 @@ import { fetchJobs } from 'redux/jobsSlice';
 import { Col, Form } from 'react-bootstrap';
 import { AppButton } from 'components';
 
-class FilteringPanel extends Component {
+export class FilteringPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing filters reducers reduces correct states after fetchJobById action 1`] = `
+Object {
+  "activeJob": Object {},
+  "jobs": Array [],
+}
+`;
+
+exports[`Testing filters reducers reduces correct states after fetchJobs action 1`] = `
+Object {
+  "activeJob": null,
+  "jobs": Array [],
+}
+`;

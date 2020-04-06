@@ -32,13 +32,15 @@ export const fetchJobById = createAsyncThunk(
     }
 );
 
+export const INITIAL_STATE = {
+    activeJob: null,
+    jobs: []
+};
+
 // slice
 const jobsSlice = createSlice({
     name: 'jobs',
-    initialState: {
-        activeJob: null,
-        jobs: []
-    },
+    initialState: INITIAL_STATE,
     reducers: {
     },
     extraReducers: {

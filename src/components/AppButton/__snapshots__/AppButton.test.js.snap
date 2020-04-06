@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Go button when is not loading 1`] = `
+<button
+  className="btn btn-primary btn-block"
+  disabled={false}
+  type="submit"
+>
+  Go
+</button>
+`;
+
+exports[`renders loading button when isLoading set to true 1`] = `
+<button
+  className="btn btn-primary"
+  disabled={true}
+  type="button"
+>
+  <span
+    aria-hidden="true"
+    className="spinner-grow spinner-grow-sm"
+    role="status"
+  />
+  Loading...
+</button>
+`;

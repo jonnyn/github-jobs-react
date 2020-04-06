@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const INITIAL_STATE = {
+    description: null,
+    location: null,
+    fullTime: false,
+    page: 1
+}
+
 const filtersSlice = createSlice({
     name: 'filters',
-    initialState: {
-        description: null,
-        location: null,
-        fullTime: false,
-        page: 1
-    },
+    initialState: INITIAL_STATE,
     reducers: {
         setDescription(state, action) {
             state.description = action.payload;
