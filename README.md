@@ -1,3 +1,8 @@
+A simple React web app that's consuming the Github Jobs REST API.
+
+DEMO: https://ttt-github-jobs.netlify.com/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
