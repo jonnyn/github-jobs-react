@@ -4,7 +4,7 @@ import Config from './Config';
 export default class JobAPI extends APIService {
   
   static useBaseURL() {
-    return !process.env.NODE_ENV || process.env.NODE_ENV === 'development' ? `${Config.proxyUrl}${Config.baseUrl}` : Config.baseUrl;
+    return `${Config.proxyUrl}${Config.baseUrl}`;
   }
 
   /**
